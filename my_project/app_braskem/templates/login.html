@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="login-container">
+        <form class="login_form" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <h1 class="titulo-login">LOGIN</h1>
+
+            <div class="login_inputs">
+                <i class="fa-solid fa-user user_icon"></i>
+                <input class="input-login" type="text" id="Usuario" name="usuario-login" placeholder="Usuário" required>
+                <br>
+                <i class="fa-sharp fa-solid fa-lock password_icon"></i>
+                <input class="input-senha" type="password" id="Senha" name="senha-login" placeholder="Senha" required>
+                <br><br>
+            </div>
+
+            <button type="submit" class="login-button">Login</button>
+
+            <p class="link-cadastro">
+                Não possui conta? <a href="{% url 'cadastro' %}" class="link">Ir para cadastro</a>
+            </p>
+        </form>
+    </div>
+</main>
+{% endblock %}

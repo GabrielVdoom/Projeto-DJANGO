@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Braskem</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="https://s3-symbol-logo.tradingview.com/braskem--600.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="https://www.instagram.com/braskem/" target=blank>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="" height="25" width="25">
+            </a>
+            <a href="https://www.youtube.com/@braskemsa" target=blank>
+                <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" alt="" height="27" width="25">
+            </a>
+            <a href="https://twitter.com/braskem" target=blank>
+                <img src="https://cdn-icons-png.flaticon.com/128/733/733579.png" alt="" height="" width="25">
+            </a>
+            <a href="https://www.facebook.com/Braskem/?locale=pt_BR" target=blank>
+                <img src="https://cdn-icons-png.flaticon.com/128/2504/2504903.png" alt="" height="" width="25">
+            </a>
+        </nav>
+
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="125" height="125" fill="currentColor" class="bi bi-amd" viewBox="0 0 16 16">
+                <path d="m.334 0 4.358 4.359h7.15v7.15l4.358 4.358V0zM.2 9.72l4.487-4.488v6.281h6.28L6.48 16H.2z"/>
+            </svg>
+        </div>
+    </header>
+
+    {% block content %}
+    <main>
+        <!-- Exibição das mensagens -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="cadastro-container">
+            <form  action="{% url 'cadastro' %}"  method="post" class="cadastro_form">
+                {% csrf_token %}
+                <h1 class="titulo-cadastro">CADASTRO</h1>
+                <label for="nome">Nome completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" maxlength="14" required>
+
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" required>
+
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" maxlength="32" required>
+
+                <br>
+                <label for="E-mail">E-mail:</label>
+                <input type="email" id="E-mail" name="email" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" maxlength="14" required>
+                <br>
+
+                <label for="genero">Gênero:</label>
+                <input type="radio" id="Masculino" name="genero" value="M">
+                <label for="Masculino">Masculino</label>
+
+                <input type="radio" id="Feminino" name="genero" value="F">
+                <label for="Feminino">Feminino</label>
+                <br><br>
+
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="datadenascimento" required>
+                <br><br>
+
+                <input type="checkbox" id="Eu concordo com os termos" required>Eu concordo com os termos
+                <br><br>
+
+                <button type="reset"><em>Limpar</em></button>
+                <button type="submit" id="submitButton"><em>Cadastrar</em></button>
+                <p>Já tem conta? <a href="{% url 'login' %}" class="link">Ir para Login</a></p>
+            </form>
+        </div>
+
+    </main>
+    {% endblock %}
+
+    <footer>
+        <p>This is not an official page</p>
+        <p>Page created by <em>Gabriel Verdino</em><a href="https://github.com/GabrielVdoom" target=blank><img src="https://cdn-icons-png.flaticon.com/128/733/733553.png"  style= "margin-left: 5px;" alt="GitHub Logo"  height="18" width="18"></a></p>
+        <p style="margin-bottom: auto;">Contact me: <u><em>silvagueiros@hotmail.com</em></u> | Phone: +55 (82) 99187-7557</p>
+        <p style="margin-top: 0px;">&copy; 2024 Braskem. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'main.js' %}"></script>
+
+</body>
+
+</html>
